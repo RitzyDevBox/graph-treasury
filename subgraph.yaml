@@ -1,0 +1,33 @@
+specVersion: 0.0.5
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: NFTTreasuryLite
+    network: mumbai
+    source:
+      address: "0xAb25f1779E8520eafBA5393e0a5A7B0Da99Bb630"
+      abi: NFTTreasuryLite
+      startBlock: 40813519
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - DepositNFT
+        - TimelockNFT
+        - UpdateUserConfiguration
+        - WithdrawNFT
+      abis:
+        - name: NFTTreasuryLite
+          file: ./abis/NFTTreasuryLite.json
+      eventHandlers:
+        - event: DepositNFT(indexed address,indexed address,indexed uint256)
+          handler: handleDepositNFT
+        - event: TimelockNFT(indexed address,indexed address,indexed uint256,uint256)
+          handler: handleTimelockNFT
+        - event: UpdateUserConfiguration(indexed address,indexed address,indexed address,uint256)
+          handler: handleUpdateUserConfiguration
+        - event: WithdrawNFT(indexed address,indexed address,indexed uint256)
+          handler: handleWithdrawNFT
+      file: ./src/nft-treasury-lite.ts
