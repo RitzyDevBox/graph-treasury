@@ -1,0 +1,23 @@
+Mumbai Test settings:
+NFTTreasury: 0xAb25f1779E8520eafBA5393e0a5A7B0Da99Bb630
+
+    depositToken(address tokenAddress, uint256 tokenId, address onBehalfOf)
+    withdrawToken(address tokenAddress, uint256 tokenId)
+    addTimelock(address tokenAddress, uint256 releaseTime, uint256 tokenId)
+    setWithdrawInfo(address withdrawAddress, uint256 minimumLockTime)
+
+MockERC720: 0xc00af56fd4353cd9b05b6201108da8e7fb4b15c5
+
+    approve(address to, uint256 tokenId)
+    mint(address to) 
+
+RPC-URL: https://polygon-mumbai.infura.io/v3/9d0601b6cb5a4d19a55ebc3cf53666c5
+
+
+//In Linux you can set up a private key like so
+export TREASURY_DEPLOY_PK=123456
+
+cast send 0xc00af56fd4353cd9b05b6201108da8e7fb4b15c5 "safeMint(address to)" 0x198342524259aD533dF824E8aE429A0F56Cf2516 --rpc-url https://polygon-mumbai.infura.io/v3/9d0601b6cb5a4d19a55ebc3cf53666c5 --private-key $TREASURY_DEPLOY_PK
+cast send 0xc00af56fd4353cd9b05b6201108da8e7fb4b15c5 "approve(address to, uint256 tokenId)" 0xAb25f1779E8520eafBA5393e0a5A7B0Da99Bb630 2 --rpc-url https://polygon-mumbai.infura.io/v3/9d0601b6cb5a4d19a55ebc3cf53666c5 --private-key $TREASURY_DEPLOY_PK
+cast send 0xAb25f1779E8520eafBA5393e0a5A7B0Da99Bb630 "depositToken(address, uint256, address)" 0xc00af56fd4353cd9b05b6201108da8e7fb4b15c5 2 0x198342524259aD533dF824E8aE429A0F56Cf2516 --rpc-url https://polygon-mumbai.infura.io/v3/9d0601b6cb5a4d19a55ebc3cf53666c5 --private-key $TREASURY_DEPLOY_PK
+cast send 0xAb25f1779E8520eafBA5393e0a5A7B0Da99Bb630 "withdrawToken(address, uint256)" 0xc00af56fd4353cd9b05b6201108da8e7fb4b15c5 2 --rpc-url https://polygon-mumbai.infura.io/v3/9d0601b6cb5a4d19a55ebc3cf53666c5 --private-key $TREASURY_DEPLOY_PK

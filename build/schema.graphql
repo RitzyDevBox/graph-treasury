@@ -1,0 +1,41 @@
+type DepositNFT @entity(immutable: true) {
+  id: Bytes!
+  _to: Bytes! # address
+  nftAddress: Bytes! # address
+  _tokenId: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type TimelockNFT @entity(immutable: true) {
+  id: Bytes!
+  _user: Bytes! # address
+  nftAddress: Bytes! # address
+  _tokenId: BigInt! # uint256
+  releaseTime: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type UpdateUserConfiguration @entity(immutable: true) {
+  id: Bytes!
+  _user: Bytes! # address
+  oldWithdrawAddress: Bytes! # address
+  newWithdrawAddress: Bytes! # address
+  locktime: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type WithdrawNFT @entity(immutable: true) {
+  id: Bytes!
+  _to: Bytes! # address
+  nftAddress: Bytes! # address
+  _tokenId: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
